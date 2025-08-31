@@ -1,0 +1,12 @@
+<h1>Workspaces#home</h1>
+<h1>Home</h1>
+
+<%= link_to "New workspace", new_workspace_path, style: "color: red" %>
+
+<div id="workspaces">
+  <% @workspaces.each do |workspace| %>
+    <p>
+      <%= link_to workspace , workspace_path(workspace) %>
+    </p>
+  <% end %>
+</div>

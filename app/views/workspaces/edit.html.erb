@@ -1,0 +1,12 @@
+<% content_for :title, "Editing workspace" %>
+
+<h1>Editing workspace</h1>
+
+<%= render "form", workspace: @workspace %>
+
+<br>
+
+<div>
+  <%= link_to "Show this workspace", @workspace %> |
+  <%= link_to "Back to workspaces", workspaces_path %>
+</div>
