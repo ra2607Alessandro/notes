@@ -14,7 +14,7 @@ class WorkspacesTest < ApplicationSystemTestCase
     visit workspaces_url
     click_on "New workspace"
 
-    fill_in "Subjests", with: @workspace.subjests
+    fill_in "Subjects", with: @workspace.subjects
     click_on "Create Workspace"
 
     assert_text "Workspace was successfully created"
@@ -25,7 +25,7 @@ class WorkspacesTest < ApplicationSystemTestCase
     visit workspace_url(@workspace)
     click_on "Edit this workspace", match: :first
 
-    fill_in "Subjests", with: @workspace.subjests
+    fill_in "Subjects", with: @workspace.subjects
     click_on "Update Workspace"
 
     assert_text "Workspace was successfully updated"
