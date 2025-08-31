@@ -5,8 +5,9 @@
 
 <div id="workspaces">
   <% @workspaces.each do |workspace| %>
+   <%= render workspace%>
     <p>
-      <%= link_to workspace , workspace_path(workspace) %>
+      <%= link_to (workspace.subjects.present? ? workspace.subjects : "Untitled Workspace"), workspace_path(workspace) %>
     </p>
   <% end %>
 </div>

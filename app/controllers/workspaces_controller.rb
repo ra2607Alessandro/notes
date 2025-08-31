@@ -6,9 +6,15 @@ class WorkspacesController < ApplicationController
     @workspaces = Workspace.all
   end
 
+  # GET /workspaces/home
+  def home
+    @workspaces = Workspace.all
+  end
+
   # GET /workspaces/1 or /workspaces/1.json
   def show
-    @workspace = Workspace.find(params[:subjects])
+    # @workspace is already set by set_workspace callback
+
   end
 
   # GET /workspaces/new
@@ -22,15 +28,15 @@ class WorkspacesController < ApplicationController
 
   # POST /workspaces or /workspaces.json
   def create
-    @workspace = Workspace.new(workspace_params)
+    @workspace = Workspace.new
 
     respond_to do |format|
       if @workspace.save
         format.html { redirect_to @workspace, notice: "Workspace was successfully created." }
         format.json { render :show, status: :created, location: @workspace }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @workspace.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @workspace.errors, status: :unprocessable_content }
       end
     end
   end
@@ -39,11 +45,11 @@ class WorkspacesController < ApplicationController
   def update
     respond_to do |format|
       if @workspace.update(workspace_params)
-        format.html { redirect_to @workspace, notice: "Workspace was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @workspace }
+        format.html { redirect_to @workspace, notice: "Workspace was successfully updated."}
+        format.json { render :show, status: :created, location: @workspace }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @workspace.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @workspace.errors, status: :unprocessable_content }
       end
     end
   end
@@ -58,14 +64,14 @@ class WorkspacesController < ApplicationController
     end
   end
 
-  private
+  private 
     # Use callbacks to share common setup or constraints between actions.
     def set_workspace
-      @workspace = Workspace.find(params.expect(:subjects, :notes))
+      @workspace = Workspace.find(params.expect(:id))  # Fixed: use :id parameter
     end
 
     # Only allow a list of trusted parameters through.
     def workspace_params
       params.require(:workspace).permit(:subjects, :notes)
     end
-end
+end 

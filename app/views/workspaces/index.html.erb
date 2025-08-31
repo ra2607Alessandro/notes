@@ -1,3 +1,4 @@
+
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Workspaces" %>
@@ -7,8 +8,9 @@
 <%= link_to "New workspace", new_workspace_path %>
 <div id="workspaces">
   <% @workspaces.each do |workspace| %>
+   <%= render workspace%>
     <p>
-      <%= link_to workspace, workspace_path(workspace) %>
+      <%= link_to workspace.subjects, workspace_path(workspace) %>
     </p>
   <% end %>
 </div>
