@@ -8,7 +8,7 @@
 <%= link_to "New workspace", new_workspace_path %>
 <div id="workspaces">
   <% @workspaces.each do |workspace| %>
-   <%= render workspace%>
+   
     <p>
       <%= link_to workspace.subjects, workspace_path(workspace) %>
     </p>

@@ -28,7 +28,7 @@ class WorkspacesController < ApplicationController
 
   # POST /workspaces or /workspaces.json
   def create
-    @workspace = Workspace.new
+    @workspace = Workspace.new(workspace_params)
 
     respond_to do |format|
       if @workspace.save
