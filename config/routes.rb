@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-
    
-   resources :workspaces 
+   resources :workspaces do 
+    collection do 
+      post :search
+    end
+  end
+
     
     
   

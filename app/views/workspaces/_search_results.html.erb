@@ -1,0 +1,5 @@
+<% @workspaces.each do |workspace|%>
+ <%= link_to workspace, class: "search_result" do %>
+  R/<%= workspace.subjects%>
+ <% end %>
+<% end %>

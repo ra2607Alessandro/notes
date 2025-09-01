@@ -1,5 +1,13 @@
-<h1>Workspaces#home</h1>
 <h1>Home</h1>
+
+<h1>Search for Workspace</h1>
+
+<%= form_with url: search_workspaces_path, method: :post do |form|%>
+<%= form.search_field :title_search, oninput: "this.form.requestSubmit()"%>
+<% end %>
+<div id="search_results">
+  Search Results 
+</div>
 
 <%= link_to "New workspace", new_workspace_path, style: "color: red" %>
 

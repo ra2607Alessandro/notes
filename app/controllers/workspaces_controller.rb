@@ -10,6 +10,21 @@ class WorkspacesController < ApplicationController
   def home
     @workspaces = Workspace.all
   end
+  def search
+    if params[:title_search].present?
+      @workspaces = Workspace.where("workspaces.subjects ILIKE ?", "%#{params[:title_search]}")
+    else 
+      @workspaces = []
+
+  end
+  
+   respond_to do |format|
+    format.turbo_stream do
+      render turbo_stream: turbo_stream.update("search_results", partial: "workspaces/search_results", locals: {workspaces: @workspaces})
+
+    end 
+  end
+end
 
   # GET /workspaces/1 or /workspaces/1.json
   def show
